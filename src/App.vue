@@ -1,19 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div v-if="isLogged">
+      <navbar/>
+      <router-view/>
+
     </div>
-    <router-view/>
+    <div v-else>
+      
+      <login/>  
+    </div>
   </div>
 </template>
+<script>
+import Navbar from './layouts/Navbar'
+import Login from './views/Login'
+  export default{
+    components: {
+      Navbar,
+      Login
+    },
+    data(){
+      return{
+        isLogged: false
+      }
+    }
+
+  }
+</script>
 
 <style>
+*{
+  border-radius: 0 !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 
