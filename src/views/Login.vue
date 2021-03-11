@@ -1,22 +1,21 @@
 <template>
 <div class="action">
     <b-form class="col-lg-4" @submit.prevent >
-        <h1>Login</h1>
+        <h1>Prijava</h1>
       <b-form-group
         id="input-group-1"
-        label="Email address:"
+        label="Email addresa:"
         label-for="input-1"
       >
         <b-form-input
           id="input-1"
           v-model="form.email"
           type="email"
-          placeholder="Enter email"
-      
+          placeholder="Ukucajte email"
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
+      <b-form-group id="input-group-2" label="Vaša Lozinka:" label-for="input-2">
         <b-form-input
           id="input-2"
           v-model="form.password"

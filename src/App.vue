@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <div v-if="isLogged">
+    <div v-if="isLoggedIn">
       <navbar/>
       <router-view/>
 
     </div>
     <div v-else>
-      
+    
       <login/>  
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Navbar from './layouts/Navbar'
 import Login from './views/Login'
   export default{
@@ -23,6 +24,9 @@ import Login from './views/Login'
       return{
         isLogged: false
       }
+    },
+    computed: {
+      ...mapGetters(['isLoggedIn'])
     }
 
   }

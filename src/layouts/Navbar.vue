@@ -19,9 +19,10 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
           <!-- <b-button>Odjavi se</b-button> -->
-                    <b-nav-item href="#">
-            <router-link to="/create">Odjavi se</router-link> 
-        </b-nav-item>
+                   
+        <b-button @click="handleLogout">Odjavi se</b-button>
+           
+      
 
 
       </b-navbar-nav>
@@ -29,6 +30,25 @@
   </b-navbar>
 </div>
 </template>
+<script>
+import { mapActions } from 'vuex'
+export default {
+  data(){
+    return {
+
+    }
+  },
+  methods: {
+    ...mapActions(['logout']),
+    async handleLogout(){
+      await this.logout({"token": localStorage.token});
+
+     
+    }
+  }
+}
+</script>
+
 <style scoped>
 a{
     color: black;
