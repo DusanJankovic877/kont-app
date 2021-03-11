@@ -4,9 +4,7 @@ class AuthService extends RequestHandler{
         return await this.apiClient.post('/login', payload);
     }
     async logout(payload){
-        console.log(payload);
         const response = await this.apiClient.post('/logout', payload)
-
         console.log(response);
     }
 

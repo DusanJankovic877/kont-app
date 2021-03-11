@@ -42,8 +42,6 @@ export default {
     ...mapActions(['logout']),
     async handleLogout(){
       await this.logout({"token": localStorage.token});
-
-     
     }
   }
 }

@@ -30,8 +30,7 @@ export default new Vuex.Store({
       await authService.logout(payload)
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      state.commit('setLogoutUser')
-      
+      state.commit('setLogoutUser');
     }
 
   },
