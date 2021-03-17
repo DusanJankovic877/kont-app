@@ -18,20 +18,15 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-          <!-- <b-button>Odjavi se</b-button> -->
-                   
+        <p>Dobro došli {{loggedUser.name}}</p>           
         <b-button @click="handleLogout">Odjavi se</b-button>
-           
-      
-
-
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data(){
     return {
@@ -41,8 +36,11 @@ export default {
   methods: {
     ...mapActions(['logout']),
     async handleLogout(){
-      await this.logout({"token": localStorage.token});
+      await this.logout({"token": localStorage.token})
     }
+  },
+  computed:{
+    ...mapGetters(['loggedUser'])
   }
 }
 </script>
@@ -50,5 +48,11 @@ export default {
 <style scoped>
 a{
     color: black;
+}
+p{
+  margin-top:12px;
+}
+button {
+  margin-left: 10px;
 }
 </style>

@@ -24,7 +24,7 @@
 
       <b-form-group id="input-group-2" label="Vaša Lozinka:" label-for="input-2" >
         <b-form-input
-
+          type="password"
           id="input-2"
           :state="errors.password ? false : null"
           v-model="form.password"
