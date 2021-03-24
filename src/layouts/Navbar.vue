@@ -9,7 +9,7 @@
     <b-collapse id="nav-collapse" is-nav>
     <b-navbar-nav>
         <b-nav-item href="#">
-            <router-link to="/">Posts</router-link> 
+            <router-link to="/posts">Posts</router-link> 
         </b-nav-item>
         <b-nav-item href="#">
             <router-link to="/create">Create Post</router-link> 
@@ -37,6 +37,8 @@ export default {
     ...mapActions(['logout']),
     async handleLogout(){
       await this.logout({"token": localStorage.token})
+      if(this.$route.path != '/')this.$router.push('/');
+
     }
   },
   computed:{

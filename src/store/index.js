@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     loggedUser: JSON.parse(localStorage.getItem('user')),
     token: localStorage.getItem('token'),
+    deltaS: undefined,
+    contents: ''
 
   },
   mutations: {
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     },
     setLogoutUser(state){
       state.loggedUser = ''
+    },
+    setDelta(state, payload){
+      state.deltaS = payload
+    },
+    setContent(state, payload){
+      state.contents = payload
     }
   },
   actions: {
@@ -36,7 +44,9 @@ export default new Vuex.Store({
   },
   getters:{
     loggedUser: (state) => state.loggedUser,
-    isLoggedIn: (state) => !!state.loggedUser
+    isLoggedIn: (state) => !!state.loggedUser,
+    deltaS:  (state) => state.deltaS,
+    contents: (state) => state.contents
   },
   modules: {
   }

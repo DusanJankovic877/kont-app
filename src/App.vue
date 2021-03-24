@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+
 import { mapGetters } from 'vuex'
 import Navbar from './layouts/Navbar'
 import Login from './views/Login'
