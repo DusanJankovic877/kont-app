@@ -28,6 +28,9 @@ export default new Vuex.Store({
     setContent(state, payload){
       state.contents = payload
     },
+    setContentsAfterCreated(state, payload){
+      state.contents = ''
+    },
     setCreatedPost(state, payload){
       state.post = payload;
     },
@@ -51,11 +54,13 @@ export default new Vuex.Store({
     },
     async setCreatePost(state, payload){
      const request =  await postService.setCreatePost(payload);
-     state.commit('setCreatedPost', request);
+     state.commit('setCreatedPost', request.data.ops);
+     state.commit('setContentsAfterCreated');
     },
     async getAllPosts(state, payload){
       const allPosts = await postService.getAllPosts();
       state.commit('setAllPosts', allPosts);
+    
     }
 
   },
