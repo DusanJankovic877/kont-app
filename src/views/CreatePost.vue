@@ -12,6 +12,16 @@
         </b-form-group>
         <!-- <Error>title must be more than 10 characters</Error> -->
       </div>
+      <div class="description-input col-lg-5 ml-auto">
+        <b-form-group
+          id="description-group"
+          label="Unesite Opis"
+          label-for="description"
+        >
+          <b-form-input id="description" v-model="description" label="description"></b-form-input>
+        </b-form-group>
+        <!-- <Error>title must be more than 10 characters</Error> -->
+      </div>
       <div class="img-input col-lg-3 mr-auto">
         <b-form-group
           id="file-group"
@@ -62,6 +72,7 @@ export default{
   data() {
     return{
       title: '',
+      description: '',
       image_url: '',
       content: '',
       editorOption: {
@@ -89,7 +100,7 @@ export default{
       const delta = JSON.stringify(this.deltaS);
       const user = JSON.parse(localStorage.getItem('user'))
       // console.log('data', JSON.parse(localStorage.getItem('user')));
-      const formData = {title: this.title, image_url: this.image_url, delta: delta, userId: user.id};
+      const formData = {title: this.title, description: this.description, image_url: this.image_url, delta: delta, userId: user.id};
       await this.$store.dispatch('setCreatePost', formData);
     },
     showPreview(){

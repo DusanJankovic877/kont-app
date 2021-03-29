@@ -11,7 +11,8 @@ export default new Vuex.Store({
     token: localStorage.getItem('token'),
     deltaS: undefined,
     contents: '',
-    post: {}
+    post: {},
+    posts: {}
 
   },
   mutations: {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     setCreatedPost(state, payload){
       state.post = payload;
+    },
+    setAllPosts(state, payload){
+      state.posts = payload
     }
   },
   actions: {
@@ -48,6 +52,10 @@ export default new Vuex.Store({
     async setCreatePost(state, payload){
      const request =  await postService.setCreatePost(payload);
      state.commit('setCreatedPost', request);
+    },
+    async getAllPosts(state, payload){
+      const allPosts = await postService.getAllPosts();
+      state.commit('setAllPosts', allPosts);
     }
 
   },
@@ -56,7 +64,8 @@ export default new Vuex.Store({
     isLoggedIn: (state) => !!state.loggedUser,
     deltaS:  (state) => state.deltaS,
     contents: (state) => state.contents,
-    post: (state) =>state.post
+    post: (state) =>state.post,
+    posts: (state) =>state.posts,
   },
   modules: {
   }

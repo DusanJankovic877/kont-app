@@ -6,6 +6,12 @@ class PostService extends RequestHandler{
        console.log(request.data);
        return request.data.ops;
     }
+    async getAllPosts(){
+        const request = await this.apiClient.get('posts');
+        return request;
+      console.log(request);
+
+    }
 }
 const postService = new PostService();
 export default postService;
