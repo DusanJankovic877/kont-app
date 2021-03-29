@@ -1,6 +1,7 @@
 <template>
 <div>
 
+    <h1>preview</h1>
     <button class="btn btn-secondary" @click="$router.replace('/create')">Edit post</button>
     <div class="content-view" ref="contentContainer">
 

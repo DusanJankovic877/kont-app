@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import authService from '../services/authService'
+import postService from '../services/postService'
 
 Vue.use(Vuex)
 
@@ -9,7 +10,8 @@ export default new Vuex.Store({
     loggedUser: JSON.parse(localStorage.getItem('user')),
     token: localStorage.getItem('token'),
     deltaS: undefined,
-    contents: ''
+    contents: '',
+    post: {}
 
   },
   mutations: {
@@ -24,6 +26,9 @@ export default new Vuex.Store({
     },
     setContent(state, payload){
       state.contents = payload
+    },
+    setCreatedPost(state, payload){
+      state.post = payload;
     }
   },
   actions: {
@@ -39,6 +44,10 @@ export default new Vuex.Store({
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       state.commit('setLogoutUser');
+    },
+    async setCreatePost(state, payload){
+     const request =  await postService.setCreatePost(payload);
+     state.commit('setCreatedPost', request);
     }
 
   },
@@ -46,7 +55,8 @@ export default new Vuex.Store({
     loggedUser: (state) => state.loggedUser,
     isLoggedIn: (state) => !!state.loggedUser,
     deltaS:  (state) => state.deltaS,
-    contents: (state) => state.contents
+    contents: (state) => state.contents,
+    post: (state) =>state.post
   },
   modules: {
   }
