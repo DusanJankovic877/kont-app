@@ -41,6 +41,7 @@
       <b-button  type="submit" variant="secondary" @click="submit" class="m-auto">Submit</b-button>
       <b-button variant="secondary" @click="showPreview" class="m-auto">preview</b-button>
     </div>
+    {{deltaS}}
   </b-form>
 </template>
 <script>
@@ -85,15 +86,18 @@ export default{
   },
   methods: {
     async submit(){
-      // console.log('data', this.deltaS);
-      await this.$store.dispatch('setCreatePost', this.deltaS);
+      const delta = JSON.stringify(this.deltaS);
+      const user = JSON.parse(localStorage.getItem('user'))
+      // console.log('data', JSON.parse(localStorage.getItem('user')));
+      const formData = {title: this.title, image_url: this.image_url, delta: delta, userId: user.id};
+      await this.$store.dispatch('setCreatePost', formData);
     },
     showPreview(){
       this.$router.replace('/preview')
     }
   },
   computed: {
-    ...mapGetters(['deltaS', 'contents', 'post']),
+    ...mapGetters(['deltaS', 'contents', 'post','loggedUser']),
   },
   mounted() {
     this.mounting = true
