@@ -1,32 +1,29 @@
 <template>
     <div>
+      <h1>Svi Postovi</h1>
+  
+      <div class="row col-lg-9 m-auto">
+        <div class="col-lg-4" v-for="post in posts.data" :key="post.id">
+          <b-card
+            class="card "
+            :title="post.title"
+            :img-src="post.img_url"
+            img-alt="Image"
+            img-top
+            tag="article"
+          >
+            <b-card-text>
+              {{post.description}}
+            </b-card-text>
 
-    <h1>All Posts</h1>
-    <div class="row m-auto">
-<div class="col-lg-4" v-for="post in posts.data" :key="post.id">
-  <b-card
-  class="card "
+            <b-button href="#" variant="secondary">Pogledaj objavu</b-button>
+          </b-card>
+        </div>
+        <!-- <div class="content-view" ref="contentContainer">
+      
 
-    :title="post.title"
-    :img-src="post.img_url"
-    img-alt="Image"
-    img-top
-    tag="article"
-   
-   
-  >
-    <b-card-text>
-      {{post.description}}
-    </b-card-text>
-
-    <b-button href="#" variant="secondary">Pogledaj objavu</b-button>
-  </b-card>
-</div>
-       <!-- <div class="content-view" ref="contentContainer">
-     
-
-    </div> -->
-    </div>
+        </div> -->
+      </div>
     </div>
 </template>
 <script>
@@ -48,6 +45,8 @@ export default{
         quill.setContents(this.posts.delta);
         setTimeout(() => { this.$refs.contentContainer.appendChild(article) }, 0);
     },
+
+
     beforeRouteEnter(to,from,next){
       if(store.getters.isLoggedIn === false)next('/');
       store.dispatch('getAllPosts');
@@ -58,5 +57,8 @@ export default{
 <style scoped>
 .card {
     margin: 5px;
+}
+h1{
+  text-align: center;
 }
 </style>
