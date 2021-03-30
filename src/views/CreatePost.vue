@@ -1,5 +1,10 @@
 <template>
-  <create-post-form
+  <div>
+    <h1 class="heading">{{this.$route.params.id ? 'Edit Post' : 'Create Post'}}</h1>
+    <!-- :postFormData="this.$route.params.id? post : postFormData" -->
+ 
+  <post-form
+  :postFormData="this.$route.params.id? post : postFormData"
     :errors="errors"
     :editorOption="editorOption"
     :contents="contents"
@@ -7,19 +12,24 @@
     @preview="showPreview"
     @submit="submit"
   />
+  </div>
 </template>
 <script>
 import store from '../store'
-import Error from '../components/Error.vue'
-import { Input } from 'iview'
 import { mapGetters } from 'vuex'
-import CreatePostForm from '../components/CreatePostForm.vue'
+import PostForm from '../components/PostForm.vue'
 export default{
   components: {
-    CreatePostForm,
+    PostForm,
   },
   data() {
     return{
+      postFormData: {
+        title: '',
+        description: '',
+        img_url: '',
+        delta: {}
+      },
       editorOption: {
         // Some Quill options...
         debug: 'info',
@@ -48,10 +58,12 @@ export default{
     }
   },
   computed: {
-    ...mapGetters(['deltaS', 'contents']),
+    ...mapGetters(['deltaS', 'contents', 'post']),
   },
   beforeRouteEnter(to,from,next){
+    console.log('create form', to.params.id);
     if(store.getters.isLoggedIn === false)next('/')
+    store.dispatch('getPost', to.params.id)
     next();
   }
 }
@@ -63,7 +75,7 @@ form{
 .ql-editor{
   height: 72vh;
 }
-h1{
+.heading{
   text-align: center;
 }
 </style>

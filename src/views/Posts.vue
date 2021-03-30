@@ -1,7 +1,6 @@
 <template>
     <div>
       <h1>Svi Postovi</h1>
-  
       <div class="row col-lg-9 m-auto">
         <div class="col-lg-4" v-for="post in posts.data" :key="post.id">
           <b-card
@@ -16,7 +15,9 @@
               {{post.description}}
             </b-card-text>
 
-            <b-button href="#" variant="secondary">Pogledaj objavu</b-button>
+            <b-button :to="{name: 'post', params: {id: post.id}}" variant="secondary">Pogledaj objavu</b-button>
+           
+
           </b-card>
         </div>
         <!-- <div class="content-view" ref="contentContainer">
@@ -37,21 +38,14 @@ export default{
         }
     },
     computed: {
-        ...mapGetters(['deltaS', 'posts']),
+        ...mapGetters(['deltaS', 'posts', 'post']),
     },
-    mounted(){
-        let article = document.createElement('article');
-        let quill = new Quill(article, {});
-        quill.setContents(this.posts.delta);
-        setTimeout(() => { this.$refs.contentContainer.appendChild(article) }, 0);
-    },
-
-
     beforeRouteEnter(to,from,next){
       if(store.getters.isLoggedIn === false)next('/');
       store.dispatch('getAllPosts');
       next();
     }
+
 }
 </script>
 <style scoped>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Posts from '../views/Posts.vue'
+import Post from '../views/Post.vue'
 import CreatePost from '../views/CreatePost.vue'
 import BlogPostPreview from '../components/BlogPostPreview.vue'
 Vue.use(VueRouter)
@@ -13,8 +14,18 @@ const routes = [
   },
   {
     path: '/create',
-    name: 'CreatePost',
+    name: 'createPost',
     component: CreatePost,
+  },
+  {
+    path: '/create/:id',
+    name: 'editPost',
+    component: CreatePost,
+  },
+  {
+    path:'/posts/:id',
+    name: 'post',
+    component: Post
   },
   {
     path: '/preview',

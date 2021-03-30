@@ -12,7 +12,8 @@ export default new Vuex.Store({
     deltaS: undefined,
     contents: '',
     post: {},
-    posts: {}
+    posts: {},
+    post:{}
 
   },
   mutations: {
@@ -31,11 +32,11 @@ export default new Vuex.Store({
     setContentsAfterCreated(state, payload){
       state.contents = ''
     },
-    setCreatedPost(state, payload){
-      state.post = payload;
-    },
     setAllPosts(state, payload){
       state.posts = payload
+    },
+    setPost(state, payload){
+      state.post = payload
     }
   },
   actions: {
@@ -52,15 +53,15 @@ export default new Vuex.Store({
       localStorage.removeItem('user');
       state.commit('setLogoutUser');
     },
-    async setCreatePost(state, payload){
-     const request =  await postService.setCreatePost(payload);
-     state.commit('setCreatedPost', request.data.ops);
-     state.commit('setContentsAfterCreated');
-    },
     async getAllPosts(state, payload){
       const allPosts = await postService.getAllPosts();
       state.commit('setAllPosts', allPosts);
-    
+    },
+    async getPost(state, payload){
+      const response = await postService.getPost(payload);
+      state.commit('setPost', response);
+      // console.log(response);
+      state.commit('setDelta', response.delta)
     }
 
   },

@@ -9,6 +9,11 @@ class PostService extends RequestHandler{
         const request = await this.apiClient.get('posts');
         return request;
     }
+    async getPost(payload){
+      
+        const request = await this.apiClient.get(`posts/${payload}`);
+        return request.data;
+    }
 }
 const postService = new PostService();
 export default postService;
