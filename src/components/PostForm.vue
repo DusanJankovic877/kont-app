@@ -49,7 +49,7 @@
       <b-button  type="submit" variant="secondary" @click="submit" class="m-auto">Submit</b-button>
       <b-button variant="secondary" @click="showPreview" class="m-auto">preview</b-button>
     </div>
-{{deltaS}}
+
   </b-form>
 </template>
 <script>

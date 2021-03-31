@@ -10,9 +10,13 @@ class PostService extends RequestHandler{
         return request;
     }
     async getPost(payload){
-      
         const request = await this.apiClient.get(`posts/${payload}`);
         return request.data;
+    }
+    async deletePost(payload){
+        const request = await this.apiClient.delete(`posts/${payload}`);
+        // console.log(request.data.message);
+        return request.data.message;
     }
 }
 const postService = new PostService();

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Posts from '../views/Posts.vue'
 import Post from '../views/Post.vue'
 import CreatePost from '../views/CreatePost.vue'
+import DeletePost from '../views/DeletePost.vue'
 import BlogPostPreview from '../components/BlogPostPreview.vue'
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     path:'/posts/:id',
     name: 'post',
     component: Post
+  },
+  {
+    path:'/delete-posts/:id',
+    name: 'delete-post',
+    component: DeletePost
   },
   {
     path: '/preview',

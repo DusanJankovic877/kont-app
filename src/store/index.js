@@ -15,6 +15,8 @@ export default new Vuex.Store({
     posts: {},
     post:{}
 
+    
+
   },
   mutations: {
     setLogin(state, payload){
@@ -37,6 +39,9 @@ export default new Vuex.Store({
     },
     setPost(state, payload){
       state.post = payload
+    },
+    setDeleteMessage(state, payload){
+      state.deletePostMessage = payload;
     }
   },
   actions: {
@@ -62,6 +67,9 @@ export default new Vuex.Store({
       state.commit('setPost', response);
       // console.log(response);
       state.commit('setDelta', response.delta)
+    },
+    async deletePost(state, payload){
+      const response = await postService.deletePost(payload);
     }
 
   },
@@ -71,7 +79,7 @@ export default new Vuex.Store({
     deltaS:  (state) => state.deltaS,
     contents: (state) => state.contents,
     post: (state) =>state.post,
-    posts: (state) =>state.posts,
+    posts: (state) =>state.posts
   },
   modules: {
   }

@@ -63,7 +63,9 @@ export default{
   beforeRouteEnter(to,from,next){
     console.log('create form', to.params.id);
     if(store.getters.isLoggedIn === false)next('/')
-    store.dispatch('getPost', to.params.id)
+    if(to.params.id){
+      store.dispatch('getPost', to.params.id)
+    }
     next();
   }
 }

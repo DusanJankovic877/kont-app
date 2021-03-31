@@ -1,6 +1,7 @@
 <template>
     <div>
       <h1>Svi Postovi</h1>
+
       <div class="row col-lg-9 m-auto">
         <div class="col-lg-4" v-for="post in posts.data" :key="post.id">
           <b-card
@@ -38,7 +39,7 @@ export default{
         }
     },
     computed: {
-        ...mapGetters(['deltaS', 'posts', 'post']),
+        ...mapGetters(['posts',]),
     },
     beforeRouteEnter(to,from,next){
       if(store.getters.isLoggedIn === false)next('/');
